@@ -12,6 +12,7 @@ public:
     QString alphavit = "abcdefghijklmnopqrstuvwxyza";
 
     QString rot(QString msg, QString key);
+    QString atbash(QString msg);
     int findIt(QChar letter);
 
 

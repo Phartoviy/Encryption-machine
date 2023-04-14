@@ -14,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("Алгоритм Гронсфельда");
     ui->comboBox->addItem("Алгоритм Атбаш");
     ui->comboBox->addItem("ROT");
-
+    ui->label->hide();
+    ui->lineEdit->hide();
 }
 
 MainWindow::~MainWindow()
@@ -32,11 +33,12 @@ void MainWindow::on_pushButton_clicked()
     switch(ui->comboBox->currentIndex())
     {
 
-    case 4:
+    case 3:{
+        qDebug() << Alg.atbash(message);
+        break;}
+    case 4:{
         qDebug() << Alg.rot(message,key);
-        break;
-
-
+        break;}
 
 
     default:
@@ -47,4 +49,19 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
+
+
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    if (index == 4)
+    {
+        ui->label->show();
+        ui->lineEdit->show();
+    }
+    else
+    {
+        ui->label->hide();
+        ui->lineEdit->hide();
+    }
+}
 
