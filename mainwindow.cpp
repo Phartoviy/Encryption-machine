@@ -14,8 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("Алгоритм Гронсфельда");
     ui->comboBox->addItem("Алгоритм Атбаш");
     ui->comboBox->addItem("ROT");
-    ui->label->hide();
-    ui->lineEdit->hide();
+    //ui->label->hide();
+    //ui->lineEdit->hide();
+    //connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(print()));
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +24,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
+void MainWindow::print()
+{
+    qDebug()<<"hello";
+}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -32,6 +36,13 @@ void MainWindow::on_pushButton_clicked()
     qDebug() << message;//debugging output
     switch(ui->comboBox->currentIndex())
     {
+
+    case 0:
+    {
+        qDebug()<< Alg.vizhener(message,key);
+        break;
+    }
+
 
     case 3:{
         qDebug() << Alg.atbash(message);
@@ -53,7 +64,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
-    if (index == 4)
+    if (index == 4 || index == 0)
     {
         ui->label->show();
         ui->lineEdit->show();

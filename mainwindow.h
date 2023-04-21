@@ -23,7 +23,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
+    void print();
 
     void on_comboBox_currentIndexChanged(int index);
 
