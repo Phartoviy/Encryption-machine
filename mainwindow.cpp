@@ -43,6 +43,15 @@ void MainWindow::on_pushButton_clicked()
         break;
     }
 
+    /*case 1:
+    {
+        qDebug()
+    }*/
+    case 2:
+    {
+        qDebug()<< Alg.gronsfeld(message,key);
+        break;
+    }
 
     case 3:{
         qDebug() << Alg.atbash(message);
@@ -64,7 +73,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
-    if (index == 4 || index == 0)
+    if (index == 4 || index == 0 || index == 2)
     {
         ui->label->show();
         ui->lineEdit->show();

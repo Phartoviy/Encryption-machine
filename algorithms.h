@@ -14,6 +14,7 @@ public:
     QString rot(QString msg, QString key);
     QString atbash(QString msg);
     QString vizhener(QString msg, QString key);
+    QString gronsfeld(QString msg, QString key);
     int findIt(QChar letter);
 
 
