@@ -29,11 +29,30 @@ void MainWindow::print()
     qDebug()<<"hello";
 }
 
+bool MainWindow::isCheckedKey()
+{
+    if ((ui->lineEdit->text() != "" && ui->lineEdit->isVisible()) || (ui->lineEdit->text() == "" && !ui->lineEdit->isVisible()))
+        return true;
+    else
+        return false;
+}
+
+
 void MainWindow::on_pushButton_clicked()
 {
     QString message = ui->plainTextEdit->toPlainText();
     QString key = ui->lineEdit->text();
     qDebug() << message;//debugging output
+    try
+    {
+        if (!isCheckedKey())
+            throw 999;
+    }
+    catch(int i)
+    {
+        qDebug() << "Error #"+QString::number(i)+" | key is empty";
+        return void();
+    }
     switch(ui->comboBox->currentIndex())
     {
 
