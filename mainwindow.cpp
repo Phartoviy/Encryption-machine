@@ -43,10 +43,11 @@ void MainWindow::on_pushButton_clicked()
         break;
     }
 
-    /*case 1:
+    case 1:
     {
-        qDebug()
-    }*/
+        qDebug() << Alg.pollibiy(message);
+        break;
+    }
     case 2:
     {
         qDebug()<< Alg.gronsfeld(message,key);

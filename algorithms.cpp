@@ -32,6 +32,32 @@ QString Algorithms::rot(QString msg, const QString key)
     return encryptedMessage;
 }
 
+QString Algorithms::pollibiy(QString msg)
+{
+    QString encryptedMessage;
+    QString kvadrat[5] ={ "abcde","fghik","lmnop","qrstu","vwxyz"};
+    for (int h = 0;h<msg.length();h++)
+    {
+        if (msg[h] == 'j')
+        {
+            encryptedMessage += "24 ";
+            continue;
+        }
+        for (int i = 0;i<5;i++)
+        {
+         for (int j = 0;j<5;j++)
+         {
+             if (msg[h] == kvadrat[i][j])
+             {
+                 encryptedMessage += QString::number(i+1)+QString::number(j+1)+' ';
+             }
+         }
+        }
+
+    }
+    return encryptedMessage;
+}
+
 QString Algorithms::gronsfeld(QString msg, QString key)
 {
     QString keyWord = key;
