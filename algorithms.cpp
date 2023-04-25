@@ -18,6 +18,8 @@ int Algorithms::findIt(QChar letter)
     return 0;
 }
 
+
+
 QString Algorithms::rot(QString msg, const QString key)
 {
 
@@ -26,6 +28,10 @@ QString Algorithms::rot(QString msg, const QString key)
     for (int i = 0;i<msg.length();i++)
     {
         //qDebug()<< findIt(msg[i]);
+        if (msg[i] == ' '){
+            encryptedMessage += ' ';
+            continue;
+        }
         encryptedMessage += alphavit[(findIt(msg[i])+shift)%26];
     }
 
@@ -38,6 +44,10 @@ QString Algorithms::pollibiy(QString msg)
     QString kvadrat[5] ={ "abcde","fghik","lmnop","qrstu","vwxyz"};
     for (int h = 0;h<msg.length();h++)
     {
+        if (msg[h] == ' '){
+            encryptedMessage += ' ';
+            continue;
+        }
         if (msg[h] == 'j')
         {
             encryptedMessage += "24 ";
@@ -62,6 +72,7 @@ QString Algorithms::gronsfeld(QString msg, QString key)
 {
     QString keyWord = key;
     QString encryptedMessage;
+    int count = 0;
     while(keyWord.length() < msg.length())
     {
         keyWord += key;
@@ -69,7 +80,11 @@ QString Algorithms::gronsfeld(QString msg, QString key)
     //qDebug()<< keyWord[1].digitValue();
     for (int i = 0;i<msg.length();i++)
     {
-        encryptedMessage += alphavit[(keyWord[i].digitValue() + findIt(msg[i])) % 26];
+        if (msg[i] == ' '){
+         encryptedMessage += ' ';
+         continue;
+        }
+        encryptedMessage += alphavit[(keyWord[count++].digitValue() + findIt(msg[i])) % 26];
     }
 
 
@@ -81,6 +96,7 @@ QString Algorithms::vizhener(QString msg, QString key)
 {
     QString keyWord = key;
     QString encryptedMessage;
+    int count = 0;
     while(keyWord.length() < msg.length())
     {
         keyWord += key;
@@ -88,7 +104,11 @@ QString Algorithms::vizhener(QString msg, QString key)
     //qDebug() << keyWord;
     for (int i = 0;i<msg.length();i++)
     {
-        encryptedMessage += alphavit[(findIt(keyWord[i])+findIt(msg[i])) % 26];
+        if (msg[i] == ' '){
+         encryptedMessage += ' ';
+         continue;
+        }
+        encryptedMessage += alphavit[(findIt(keyWord[count++])+findIt(msg[i])) % 26];
     }
     return encryptedMessage;
 }
@@ -98,6 +118,10 @@ QString Algorithms::atbash(QString msg)
     QString encryptedMessage;
     for (int i = 0;i<msg.length();i++)
     {
+        if (msg[i] == ' '){
+         encryptedMessage += ' ';
+         continue;
+        }
         encryptedMessage += alphavit[(26 - findIt(msg[i])-1)];
     }
     return encryptedMessage;
