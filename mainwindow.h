@@ -26,7 +26,7 @@ private slots:
     void print();
     bool isCheckedKey();
     void on_comboBox_currentIndexChanged(int index);
-
+    void writeInFile(QString str);
 private:
     Ui::MainWindow *ui;
     Algorithms Alg;

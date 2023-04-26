@@ -3,7 +3,7 @@
 #include "ui_mainwindow.h"
 #include "algorithms.h"
 #include <QDebug>
-
+#include <QFile>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     //ui->label->hide();
     //ui->lineEdit->hide();
     //connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(print()));
+
 }
 
 MainWindow::~MainWindow()
@@ -37,6 +38,18 @@ bool MainWindow::isCheckedKey()
         return false;
 }
 
+void MainWindow::writeInFile(QString str)
+{
+    QFile fileResult;
+    QTextStream stream;
+    fileResult.setFileName("encryptionMessage.txt");
+    stream.setDevice(&fileResult);
+    if (fileResult.open(QIODevice::WriteOnly))
+    {
+        stream << str;
+        fileResult.close();
+    }
+}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -44,7 +57,7 @@ void MainWindow::on_pushButton_clicked()
     QString key = ui->lineEdit->text();
     message = message.toLower();
     //qDebug() << message;//debugging output
-
+    QString cipher;
     try
     {
         if (!isCheckedKey())
@@ -60,34 +73,39 @@ void MainWindow::on_pushButton_clicked()
 
     case 0:
     {
+        cipher = Alg.vizhener(message,key);
         qDebug()<< Alg.vizhener(message,key);
         break;
     }
 
     case 1:
     {
+        cipher = Alg.pollibiy(message);
         qDebug() << Alg.pollibiy(message);
         break;
     }
     case 2:
     {
+        cipher = Alg.gronsfeld(message,key);
         qDebug()<< Alg.gronsfeld(message,key);
         break;
     }
 
     case 3:{
+        cipher = Alg.atbash(message);
         qDebug() << Alg.atbash(message);
-        break;}
+        break;
+    }
     case 4:{
+        cipher = Alg.rot(message,key);
         qDebug() << Alg.rot(message,key);
-        break;}
-
-
+        break;
+    }
     default:
         break;
     }
 
-
+    writeInFile(cipher);
 
 }
 
