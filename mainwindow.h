@@ -23,7 +23,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void print();
+    void fileChooser();
     bool isCheckedKey();
     void on_comboBox_currentIndexChanged(int index);
     void writeInFile(QString str);

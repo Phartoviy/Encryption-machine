@@ -4,6 +4,7 @@
 #include "algorithms.h"
 #include <QDebug>
 #include <QFile>
+#include <QFileDialog>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -14,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("Алгоритм Гронсфельда");
     ui->comboBox->addItem("Алгоритм Атбаш");
     ui->comboBox->addItem("ROT");
+
+    connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(fileChooser()));
     //ui->label->hide();
     //ui->lineEdit->hide();
     //connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(print()));
@@ -25,9 +28,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::print()
+void MainWindow::fileChooser()
 {
-    qDebug()<<"hello";
+    QString fileName = QFileDialog::getOpenFileName();
+    ui->label_3->setText(fileName);
 }
 
 bool MainWindow::isCheckedKey()
