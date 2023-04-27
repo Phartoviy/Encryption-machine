@@ -17,9 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("ROT");
 
     connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(fileChooser()));
-    //ui->label->hide();
-    //ui->lineEdit->hide();
-    //connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(print()));
+    connect(ui->pushButton_3,SIGNAL(clicked()),this,SLOT(decryption()));
 
 }
 
@@ -32,6 +30,28 @@ void MainWindow::fileChooser()
 {
     QString fileName = QFileDialog::getOpenFileName();
     ui->label_3->setText(fileName);
+    //readFromFile(fileName);
+}
+
+void MainWindow::decryption()
+{
+
+    //some code
+
+
+
+}
+
+void MainWindow::readFromFile(QString fileName)
+{
+    QFile file(fileName);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream(&file);
+        QString str = stream.readAll();
+        //qDebug() << str;
+        file.close();
+    }
 }
 
 bool MainWindow::isCheckedKey()

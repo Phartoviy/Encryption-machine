@@ -27,6 +27,8 @@ private slots:
     bool isCheckedKey();
     void on_comboBox_currentIndexChanged(int index);
     void writeInFile(QString str);
+    void readFromFile(QString fileName);
+    void decryption();
 private:
     Ui::MainWindow *ui;
     Algorithms Alg;
