@@ -1,8 +1,9 @@
-
+﻿
 #include "mainwindow.h"
 
 #include <QApplication>
-
+#include <QMenu>
+#include<QMenuBar>
 
 int main(int argc, char *argv[])
 {

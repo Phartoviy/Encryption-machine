@@ -18,6 +18,10 @@ public:
     QString vizhener(QString msg, QString key);
     QString gronsfeld(QString msg, QString key);
     QString pollibiy(QString msg);
+    QString decryptionRot(QString msg, QString key);
+    QString decryptionPollibiy(QString msg);
+    QString decryptionAtbash(QString msg);
+    int getDigit(QChar ch);
     int findIt(QChar letter);
 
 

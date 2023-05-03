@@ -27,11 +27,16 @@ private slots:
     bool isCheckedKey();
     void on_comboBox_currentIndexChanged(int index);
     void writeInFile(QString str);
-    void readFromFile(QString fileName);
+    QString readFromFile(QString fileName);
     void decryption();
+    void aboutInfo();
+    void on_actionInformation_triggered();
+
 private:
     Ui::MainWindow *ui;
     Algorithms Alg;
+    QString fileName;
+    QString encrypt;
 };
 
 #endif // MAINWINDOW_H

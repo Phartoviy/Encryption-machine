@@ -5,6 +5,9 @@
 #include <QDebug>
 #include <QFile>
 #include <QFileDialog>
+#include <QProgressDialog>
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -26,32 +29,70 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::aboutInfo()
+{
+    //QMesssageBox* messageBox = new QMessageBox(QMessageBox::Information,"MesaageBox","Encryption Machine",QMessageBox::Cancel);
+}
+
 void MainWindow::fileChooser()
 {
-    QString fileName = QFileDialog::getOpenFileName();
+    fileName = QFileDialog::getOpenFileName();
     ui->label_3->setText(fileName);
-    //readFromFile(fileName);
+
 }
 
 void MainWindow::decryption()
 {
-
+    QString message = readFromFile(fileName);
+    QString key = ui->lineEdit_2->text();
     //some code
+    switch(ui->comboBox->currentIndex())
+    {
 
+    case 0:
+    {
+
+        break;
+    }
+
+    case 1:
+    {
+        qDebug() << Alg.decryptionPollibiy(message);
+        break;
+    }
+    case 2:
+    {
+
+        break;
+    }
+
+    case 3:{
+        qDebug() << Alg.decryptionAtbash(message);
+        break;
+    }
+    case 4:{
+        qDebug() << Alg.decryptionRot(message,key);
+        break;
+    }
+    default:
+        break;
+    }
 
 
 }
 
-void MainWindow::readFromFile(QString fileName)
+QString MainWindow::readFromFile(QString fileName)
 {
     QFile file(fileName);
+    QString str;
     if(file.open(QIODevice::ReadOnly))
     {
         QTextStream stream(&file);
-        QString str = stream.readAll();
-        //qDebug() << str;
+        str = stream.readAll();
+        //qDebug() << str;//test debug out
         file.close();
     }
+    return str;
 }
 
 bool MainWindow::isCheckedKey()
@@ -64,6 +105,8 @@ bool MainWindow::isCheckedKey()
 
 void MainWindow::writeInFile(QString str)
 {
+
+
     QFile fileResult;
     QTextStream stream;
     fileResult.setFileName("encryptionMessage.txt");
@@ -73,6 +116,7 @@ void MainWindow::writeInFile(QString str)
         stream << str;
         fileResult.close();
     }
+
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -147,5 +191,11 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
         ui->label->hide();
         ui->lineEdit->hide();
     }
+}
+
+
+void MainWindow::on_actionInformation_triggered()
+{
+    QMessageBox::information(this,"Information","Encryption Machine");
 }
 
