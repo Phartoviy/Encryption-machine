@@ -21,6 +21,8 @@ public:
     QString decryptionRot(QString msg, QString key);
     QString decryptionPollibiy(QString msg);
     QString decryptionAtbash(QString msg);
+    QString decryptionGronsfeld(QString msg,QString key);
+    QString decryptionVizhener(QString msg, QString key);
     int getDigit(QChar ch);
     int findIt(QChar letter);
 

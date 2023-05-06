@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(fileChooser()));
     connect(ui->pushButton_3,SIGNAL(clicked()),this,SLOT(decryption()));
 
+    //qDebug() << char(48);
 }
 
 MainWindow::~MainWindow()
@@ -51,7 +52,7 @@ void MainWindow::decryption()
 
     case 0:
     {
-
+        qDebug() << Alg.decryptionVizhener(message,key);
         break;
     }
 
@@ -62,7 +63,7 @@ void MainWindow::decryption()
     }
     case 2:
     {
-
+        qDebug() << Alg.decryptionGronsfeld(message,key);
         break;
     }
 
@@ -185,11 +186,15 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
     {
         ui->label->show();
         ui->lineEdit->show();
+        ui->label_2->show();
+        ui->lineEdit_2->show();
     }
     else
     {
         ui->label->hide();
         ui->lineEdit->hide();
+        ui->label_2->hide();
+        ui->lineEdit_2->hide();
     }
 }
 

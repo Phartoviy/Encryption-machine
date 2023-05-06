@@ -118,6 +118,24 @@ QString Algorithms::pollibiy(QString msg)
     return encryptedMessage;
 }
 
+QString Algorithms::decryptionGronsfeld(QString msg, QString key)
+{
+    QString plaintext = "";
+    int keyIndex = 0;
+    for (int i = 0; i < msg.length(); i++) {
+        int shift = getDigit(key[keyIndex])+1;
+        if (msg[i] == ' ')
+        {
+          plaintext += ' ';
+          continue;
+        }
+        plaintext += alphavit[(findIt(msg[i])-shift) % 26];
+        keyIndex = (keyIndex + 1) % key.length();
+    }
+    return plaintext;
+
+}
+
 QString Algorithms::gronsfeld(QString msg, QString key)
 {
     QString keyWord = key;
@@ -140,6 +158,26 @@ QString Algorithms::gronsfeld(QString msg, QString key)
 
 
     return encryptedMessage;
+}
+
+QString Algorithms::decryptionVizhener(QString msg, QString key)
+{
+
+    QString plaintext = "";
+    int keyIndex = 0;
+    for (int i = 0; i < msg.length(); i++) {
+        int shift = findIt(key[keyIndex]);
+        if (msg[i] == ' ')
+        {
+         plaintext += ' ';
+         continue;
+        }
+        plaintext += alphavit[(findIt(msg[i])-shift) % 26];
+        keyIndex = (keyIndex + 1) % key.length();
+    }
+    return plaintext;
+
+
 }
 
 QString Algorithms::vizhener(QString msg, QString key)
